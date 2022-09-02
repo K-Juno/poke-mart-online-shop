@@ -1,37 +1,31 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function ShoppingItem() {
-  const apiURL = "https://pokeapi.co/api/v2/item/";
+export default function ShoppingItem({details, name}) {
 
-  const [items, setItems] = useState([]);
+  const [image, setImage] = useState([]);
+  const [price, setPrice] = useState([]);
 
   useEffect(() => {
-    fetch(apiURL)
+    fetch(details)
       .then((response) => response.json())
       .then((data) => {
-        setItems(data.results);
+        setImage(data.sprites.default);
+        setPrice(data.cost);
       })
       .catch((error) => console.error(error));
-  }, [apiURL]);
+  }, [details]); 
 
   return (
-    <CardContainer>
-      {items.map((item) => {
-        return (
+
           <Card>
-            <li key={item.name}>{item.name}</li>
+            <li><img alt="" src={image}/>{name}<p>{price}</p></li>
           </Card>
-        );
-      })}
-    </CardContainer>
+        
   );
 }
-const CardContainer = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
+
+
 
 const Card = styled.article`
   list-style: none;
