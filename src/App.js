@@ -3,8 +3,6 @@ import ShoppingItem from "./components/ShoppingItem";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-
-
 function App() {
 
   const apiURL = "https://pokeapi.co/api/v2/item/";
@@ -21,18 +19,17 @@ function App() {
       .catch((error) => console.error(error));
   }, [apiURL]);
 
-  // const itemDetails = items.url;
-
   return (
     <div>
       <Header />
       <CardContainer>
-      {items.map((item) => {
-        return (
-      <ShoppingItem key={item.name} name={item.name} details={item.url}/>
-      );
-      })}
+        {items.map((item) => {
+          return (
+            <ShoppingItem key={item.name} name={item.name} details={item.url} />
+          );
+        })}
       </CardContainer>
+
     </div>
   );
 }
