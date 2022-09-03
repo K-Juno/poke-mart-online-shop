@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
-export default function ShoppingItem({ details, name }) {
+export default function ShoppingItem({ details, name, onAddItem }) {
 
   const [image, setImage] = useState("");
   const [price, setPrice] = useState();
+  const item = {
+    name: name, id: nanoid(),
+  };
 
   useEffect(() => {
     fetch(details)
@@ -19,6 +23,7 @@ export default function ShoppingItem({ details, name }) {
   return (
     <Card>
       <li>{name}<br /><Picture alt="" src={image} /><Price>{price} ¥</Price></li>
+      <button onClick={() => onAddItem(item)}>Add Item</button>
     </Card>
 
   );
@@ -34,11 +39,12 @@ const Card = styled.article`
   font-size: 28px;
   height: 200px;
   width: 200px;
-  border: solid 10px #3A3A3A;
+  border: solid 10px #BCBB6D;
   border-radius: 5px;
-  background: #BCBB6D;
+  background: #3A3A3A;
   color: white;
   padding: 30px;
+  gap: 20px;
 `;
 
 const Picture = styled.img`
