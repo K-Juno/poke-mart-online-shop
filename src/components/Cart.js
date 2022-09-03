@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function Cart({ item, image, price }) {
+export default function Cart({ details, name }) {
+
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState();
+
+  useEffect(() => {
+    fetch(details)
+      .then((response) => response.json())
+      .then((data) => {
+        setImage(data.sprites.default);
+        setPrice(data.cost);
+      })
+      .catch((error) => console.error(error));
+  }, [details]);
+
   return (
     <Card>
-      <li>{item.name}<br /><Picture alt="" src={image} /><Price>{price} ¥</Price></li>
+      <li>{name}<br /><Picture alt="" src={image} /><Price>{price} ¥</Price></li>
     </Card>
   );
 }

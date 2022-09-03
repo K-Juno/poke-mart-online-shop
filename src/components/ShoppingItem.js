@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { nanoid } from "nanoid";
 
 export default function ShoppingItem({ details, name, onAddItem }) {
 
   const [image, setImage] = useState("");
   const [price, setPrice] = useState();
   const item = {
-    name: name, id: nanoid(),
+    name: name, url: details,
   };
 
   useEffect(() => {

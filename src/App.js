@@ -35,17 +35,17 @@ function App() {
   // }
 
   function addToCart(newItem) {
-    setShoppingCart([newItem, ...shoppingCart]);
+    setShoppingCart([...shoppingCart, newItem]);
   }
-
+  console.log(shoppingCart);
   return (
     <div>
       <Header />
       <h2>Cart</h2>
       <CartContainer>
-        {shoppingCart.map((newItem) => {
+        {shoppingCart.map((item) => {
           return (
-            <Cart key={newItem.name} item={newItem} />
+            <Cart key={item.name} name={item.name} details={item.url} />
           );
         })}
       </CartContainer>
