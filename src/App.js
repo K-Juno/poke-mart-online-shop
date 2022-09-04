@@ -37,6 +37,11 @@ function App() {
   function addToCart(newItem) {
     setShoppingCart([...shoppingCart, newItem]);
   }
+
+  function removeItem(name) {
+    setShoppingCart(shoppingCart.filter((item) => item.name !== name));
+  }
+
   console.log(shoppingCart);
   return (
     <div>
@@ -45,7 +50,7 @@ function App() {
       <CartContainer>
         {shoppingCart.map((item) => {
           return (
-            <Cart key={item.name} name={item.name} details={item.url} />
+            <Cart key={item.name} name={item.name} details={item.url} onRemoveItem={removeItem} />
           );
         })}
       </CartContainer>
