@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function Cart({ details, name }) {
+export default function Cart({ image, price, name, onRemoveItem }) {
 
-  const [image, setImage] = useState("");
-  const [price, setPrice] = useState();
+  // const [image, setImage] = useState("");
+  // const [price, setPrice] = useState();
 
-  useEffect(() => {
-    fetch(details)
-      .then((response) => response.json())
-      .then((data) => {
-        setImage(data.sprites.default);
-        setPrice(data.cost);
-      })
-      .catch((error) => console.error(error));
-  }, [details]);
+  // useEffect(() => {
+  //   fetch(details)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setImage(data.sprites.default);
+  //       setPrice(data.cost);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, [details]);
 
   return (
     <Card>
       <li>{name}<br /><Picture alt="" src={image} /><Price>{price} ¥</Price></li>
+      <button onClick={() => onRemoveItem(name)}>Remove Item</button>
     </Card>
   );
 }
